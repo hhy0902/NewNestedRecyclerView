@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity() {
         deviceDataList = deviceDataList)
 
     var i = 2
-
     var deviceText = ""
+    var sb = StringBuilder()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,18 +36,18 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btn_save).setOnClickListener {
 
-            for(item in deviceDataList) {
-                Log.d("qwer","${item.deviceName}")
-                Log.d("qwer","${item.deviceValue}")
-
-                deviceText = "${item.deviceName}"
+            deviceDataList.forEach {
+                sb.append(it.deviceName).append(it.deviceValue)
+                Log.d("qwer","${it.deviceName}")
 
             }
-
-            //Toast.makeText(this,"${deviceDataList.get(0)}",Toast.LENGTH_SHORT).show()
-            //Log.d("qwer","${deviceDataList.get(0)}")
+            deviceText = sb.toString()
+            Log.d("qwer","${deviceText}")
             findViewById<TextView>(R.id.gateWay).text = deviceText
+            sb = StringBuilder()
+
         }
+
 
 
 
